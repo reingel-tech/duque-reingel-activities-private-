@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Staff Directory</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #fafafa;
+      margin: 0;
+      padding: 40px 20px;
+      color: #d67a86;
+    }
+
+    h1 {
+      text-align: center;
+      color: #530934;
+      margin-bottom: 25px;
+    }
+
+    .box {
+      max-width: 900px;
+      background-color: #ffffff;
+      margin: auto;
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    }
+
+    .input-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 15px;
+      justify-content: space-between;
+    }
+
+    .input-group input {
+      flex: 1 1 18%;
+      min-width: 130px;
+      padding: 8px 10px;
+      font-size: 14px;
+      border: 1px solid #cfd8dc;
+      border-radius: 5px;
+    }
+
+    .input-group button {
+      padding: 9px 16px;
+      background-color: #7e2727;
+      border: none;
+      color: white;
+      font-size: 14px;
+      font-weight: 600;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+    }
+
+    .input-group button:hover {
+      background-color: #e62eae;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      font-size: 14px;
+    }
+
+    th, td {
+      border: 1px solid #e0e0e0;
+      padding: 10px 12px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #f1f8e9;
+      color: #aa4689;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f9fbe7;
+    }
+
+    .remove-btn {
+      background-color: #d32f2f;
+      border: none;
+      color: white;
+      padding: 5px 10px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 13px;
+    }
+
+    .remove-btn:hover {
+      background-color: #b71c1c;
+    }
+
+    @media (max-width: 700px) {
+      .input-group {
+        flex-direction: column;
+      }
+
+      .input-group input,
+      .input-group button {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Employee Directory</h1>
+
+  <div class="box">
+    <div class="input-group">
+      <input type="text" id="empId" placeholder="ID (e.g. ST101)" />
+      <input type="text" id="lastName" placeholder="Last Name" />
+      <input type="text" id="position" placeholder="Position" />
+      <input type="text" id="office" placeholder="Office" />
+      <button onclick="addEmployee()">Add</button>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Last Name</th>
+          <th>Position</th>
+          <th>Office</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody id="employeeList">
+        <!-- Employee rows will appear here -->
+      </tbody>
+    </table>
+  </div>
+
+  <script>
+    function addEmployee() {
+      const empId = document.getElementById("empId").value.trim();
+      const lastName = document.getElementById("lastName").value.trim();
+      const position = document.getElementById("position").value.trim();
+      const office = document.getElementById("office").value.trim();
+
+      if (!empId || !lastName || !position || !office) {
+        alert("Please fill in all fields.");
+        return;
+      }
+
+      const table = document.getElementById("employeeList");
+      const row = document.createElement("tr");
+
+      row.innerHTML = `
+        <td>${empId}</td>
+        <td>${lastName}</td>
+        <td>${position}</td>
+        <td>${office}</td>
+        <td><button class="remove-btn" onclick="removeRow(this)">Delete</button></td>
+      `;
+
+      table.appendChild(row);
+
+      // Clear inputs
+      document.getElementById("empId").value = "";
+      document.getElementById("lastName").value = "";
+      document.getElementById("position").value = "";
+      document.getElementById("office").value = "";
+    }
+
+    function removeRow(button) {
+      const row = button.parentElement.parentElement;
+      row.remove();
+    }
+  </script>
+
+</body>
+</html>
