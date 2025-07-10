@@ -1,0 +1,17 @@
+body {
+    background-color: #fff0f6;
+    font-family: 'Segoe UI', sans-serif;
+}
+.card {
+    box-shadow: 0 5px 15px rgba(255, 192, 203, 0.3);
+}
+.btn-pink {
+    background-color: #ff69b4;
+    color: white;
+}
+.btn-pink:hover {
+    background-color: #ff85c1;
+}
+.text-pink {
+    color: #ff69b4;
+}
